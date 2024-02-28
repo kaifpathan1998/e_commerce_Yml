@@ -233,11 +233,11 @@ paths:
                 - cartId: 1
                   status: "created"
                   items:
-                    - productId: "1"
+                    - ProductsId: "1"
                       productName: "Product 1"
                       quantity: 2
                       price: 10.99
-                    - productId: "2"
+                    - ProductsId: "2"
                       productName: "Product 2"
                       quantity: 1
                       price: 5.99
@@ -265,7 +265,7 @@ paths:
                 - cartId: 1
                   status: "created"
                   items:
-                    - productId: "1"
+                    - ProductsId: "1"
                       productName: "Product 1"
                       quantity: 2
                       price: 10.99
@@ -315,121 +315,89 @@ paths:
                 example:
                   message: "Cart deleted successfully"
 
-  /createProduct:
-    post:
-      tags:
-        - Products
-      summary: Create a new product
-      description: Create a new product with all details
-      requestBody:
-        required: true
-        content:
-          application/json:
-            schema:
-              $ref: '#/components/schemas/CreateProductRequest'
-      responses:
-        '201':
-          description: Created product
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ProductResponse'
-
-  /getProductById/{productId}:
+  /products:
     get:
-      tags:
-        - Products
-      summary: Retrieve product by ID
-      description: Retrieve product information by product ID
-      parameters:
-        - name: productId
-          in: path
-          required: true
-          schema:
-            type: string
-      responses:
-        '200':
-          description: Retrieve product by ID
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ProductResponse'
-
-  /updateProduct/{productId}:
-    put:
-      tags:
-        - Products
-      summary: Update product by ID
-      description: Update product information by product ID
-      parameters:
-        - name: productId
-          in: path
-          required: true
-          schema:
-            type: string
-      requestBody:
-        required: true
-        content:
-          application/json:
-            schema:
-              $ref: '#/components/schemas/UpdateProductRequest'
-      responses:
-        '200':
-          description: Update successful
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ProductResponse'
-
-  /deleteProduct/{productId}:
-    delete:
-      tags:
-        - Products
-      summary: Delete product by ID
-      description: Delete product by product ID
-      parameters:
-        - name: productId
-          in: path
-          required: true
-          schema:
-            type: string
-      responses:
-        '200':
-          description: Delete successful
-          content:
-            application/json:
-              schema:
-                type: object
-                properties:
-                  message:
-                    type: string
-                example:
-                  message: "Product deleted successfully"
-
-  /getAllProducts:
-    get:
-      tags:
-        - Products
       summary: Get all products
-      description: Retrieve a list of all products
+      operationId: getProducts
+      tags:
+        - Products
       responses:
         '200':
-          description: 'All products'
-          content:
-            application/json:
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/ProductResponse'
-              example:
-                - productId: "1"
-                  productName: "Product 1"
-                  quantity: 100
-                  price: 10.99
-                - productId: "2"
-                  productName: "Product 2"
-                  quantity: 50
-                  price: 5.99
+          description: Successful response
+    post:
+      summary: Create a new product
+      operationId: createProduct
+      tags:
+        - Products
+      parameters:
+        - name: Product
+          in: path
+          description: The product to create
+          required: true
+          schema:
+            $ref: "#/components/schemas/Products"
+      responses:
+          '201':
+            description: Product created successfully
+
+  /products/{productId}:
+    get:
+      summary: Get product by ID
+      operationId: getProductById
+      tags:
+        - Products
+      parameters:
+        - name: productId
+          in: path
+          description: ID of the product to retrieve
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Successful response
+        '404':
+          description: Product not found
+    put:
+      summary: Update product by ID
+      operationId: updateProductById
+      tags:
+        - Products
+      parameters:
+        - name: productId
+          in: path
+          description: ID of the product to update
+          required: true
+          schema:
+            type: string
+        - name: Product
+          in: path
+          description: Updated product data
+          required: true
+          schema:
+            $ref: "#/components/schemas/Products"
+      responses:
+        '200':
+          description: Product updated successfully
+        '404':
+          description: Product not found
+    delete:
+      summary: Delete product by ID
+      operationId: deleteProductById
+      tags:
+        - Products
+      parameters:
+        - name: productId
+          in: path
+          description: ID of the product to delete
+          required: true
+          schema:
+            type: string
+      responses:
+        '204':
+          description: Product deleted successfully
+        '404':
+          description: Product not found
 
   /inventory/{inventory_id}:
     get:
@@ -636,11 +604,11 @@ components:
         orderId: "12345"
         customerName: "John Doe"
         products:
-          - productId: "1"
+          - ProductsId: "1"
             productName: "Product 1"
             quantity: 2
             price: 10.99
-          - productId: "2"
+          - ProductsId: "2"
             productName: "Product 2"
             quantity: 1
             price: 5.99
@@ -697,41 +665,39 @@ components:
         cartId: 1
         status: "created"
         items:
-          - productId: "1"
+          - ProductsId: "1"
             productName: "Product 1"
             quantity: 2
             price: 10.99
 
-    CreateProductRequest:
+    Products:
       type: object
       properties:
-        productName:
+        id:
+          type: integer
+        image:
           type: string
+        name:
+          type: string
+        description:
+          type: string
+        price:
+          type: integer
         quantity:
           type: integer
-        price:
-          type: number
-      example:
-        productName: "New Product"
-        quantity: 100
-        price: 19.99
-
-    ProductResponse:
-      type: object
-      properties:
-        productId:
+        unit:
           type: string
-        productName:
-          type: string
-        quantity:
-          type: integer
-        price:
-          type: number
-      example:
-        productId: "1"
-        productName: "Product 1"
-        quantity: 100
-        price: 10.99
+        category:
+          type: string  
+      required:
+        - id
+        - image
+        - name
+        - description
+        - price
+        - quantity
+        - unit
+        - category
 
     InventoryResponse:
       type: object
