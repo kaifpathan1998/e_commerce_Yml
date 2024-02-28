@@ -1,0 +1,784 @@
+openapi: 3.0.1
+info:
+  title: Ecommerce RestAPis Specs
+  version: 1.0.0
+tags:
+  - name: Orders
+    description: Operations related to Orders
+  - name: Carts
+    description: Operations related to Carts
+  - name: Products
+    description: Operations related to Products
+  - name: Inventory
+    description: Operations related to Inventory
+  - name: Customers
+    description: Operations related to Customers
+
+paths:
+  /createOrder:
+    post:
+      tags:
+        - Orders
+      summary: Creating New Order
+      description: Creating New Order with all details
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateOrderRequest'
+      responses:
+        '200':
+          description: Created Order
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/OrderResponse'
+
+  /cancelOrder/{orderId}:
+    post:
+      tags:
+        - Orders
+      summary: Canceling Order
+      description: Canceling Order with all details
+      parameters:
+        - name: orderId
+          in: path
+          description: Order Id to be cancelled
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Cancel Order
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                example:
+                  message: "Order cancelled successfully"
+
+  /closeOrder/{orderId}:
+    post:
+      tags:
+        - Orders
+      summary: Close Order
+      description: Close Order
+      parameters:
+        - name: orderId
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Close Order
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                example:
+                  message: "Order closed successfully"
+
+  /getAllOrders:
+    get:
+      tags:
+        - Orders
+      summary: List Of Orders
+      description: Retrieve all orders
+      responses:
+        '200':
+          description: 'All orders'
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/OrderResponse'
+              example:
+                - id: 1
+                  orderId: "12345"
+                  status: "created"
+                - id: 2
+                  orderId: "67890"
+                  status: "processing"
+
+  /getOrderById/{orderId}:
+    get:
+      tags:
+        - Orders
+      summary: Retrieve Order By Id
+      description: Retrieve Order By Id
+      parameters:
+        - name: orderId
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: 'Retrieve Order By Id'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/OrderResponse'
+
+  /updateOrder/{orderId}:
+    put:
+      tags:
+        - Orders
+      summary: Update Order
+      description: Update Order
+      parameters:
+        - name: orderId
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: 'Update Successful'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/OrderResponse'
+
+  /deleteOrder/{orderId}:
+    delete:
+      tags:
+        - Orders
+      summary: Delete Order
+      description: Delete Order
+      parameters:
+        - name: orderId
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: 'Delete Successful'
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                example:
+                  message: "Order deleted successfully"
+
+  /createCart:
+    post:
+      tags:
+        - Carts
+      summary: Creating New Cart
+      description: Creating New Cart with all details
+      responses:
+        '200':
+          description: Created Cart
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CartResponse'
+
+  /addProductCart/{cartId}:
+    post:
+      tags:
+        - Carts
+      summary: Add product in Cart By CartId
+      description: Add product in Cart By CartId
+      parameters:
+        - name: cartId
+          in: path
+          required: true
+          schema:
+            type: integer
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AddItemToCartRequest'
+      responses:
+        '200':
+          description: Product Added To Cart
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CartResponse'
+
+  /getAllCarts:
+    get:
+      tags:
+        - Carts
+      summary: Get All Carts
+      description: Returns a list of carts
+      responses:
+        '200':
+          description: 'All Carts'
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/CartResponse'
+              example:
+                - cartId: 1
+                  status: "created"
+                  items:
+                    - productId: "1"
+                      productName: "Product 1"
+                      quantity: 2
+                      price: 10.99
+                    - productId: "2"
+                      productName: "Product 2"
+                      quantity: 1
+                      price: 5.99
+
+  /getCartById/{cartId}:
+    get:
+      tags:
+        - Carts
+      summary: Get Cart By Id
+      description: Get Cart By Id
+      parameters:
+        - name: cartId
+          in: path
+          required: true
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: 'Get Cart By Id'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CartResponse'
+              example:
+                - cartId: 1
+                  status: "created"
+                  items:
+                    - productId: "1"
+                      productName: "Product 1"
+                      quantity: 2
+                      price: 10.99
+
+  /updateCart/{cartId}:
+    put:
+      tags:
+        - Carts
+      summary: Update Cart by Id
+      description: Updates the information for an existing cart.
+      parameters:
+        - name: cartId
+          in: path
+          required: true
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: 'Update Successful'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CartResponse'
+
+  /deleteCart/{cartId}:
+    delete:
+      tags:
+        - Carts
+      summary: Delete Cart by Id
+      description: Deletes an existing cart.
+      parameters:
+        - name: cartId
+          in: path
+          required: true
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: 'Delete Successful'
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                example:
+                  message: "Cart deleted successfully"
+
+  /createProduct:
+    post:
+      tags:
+        - Products
+      summary: Create a new product
+      description: Create a new product with all details
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateProductRequest'
+      responses:
+        '201':
+          description: Created product
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProductResponse'
+
+  /getProductById/{productId}:
+    get:
+      tags:
+        - Products
+      summary: Retrieve product by ID
+      description: Retrieve product information by product ID
+      parameters:
+        - name: productId
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Retrieve product by ID
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProductResponse'
+
+  /updateProduct/{productId}:
+    put:
+      tags:
+        - Products
+      summary: Update product by ID
+      description: Update product information by product ID
+      parameters:
+        - name: productId
+          in: path
+          required: true
+          schema:
+            type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UpdateProductRequest'
+      responses:
+        '200':
+          description: Update successful
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProductResponse'
+
+  /deleteProduct/{productId}:
+    delete:
+      tags:
+        - Products
+      summary: Delete product by ID
+      description: Delete product by product ID
+      parameters:
+        - name: productId
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Delete successful
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                example:
+                  message: "Product deleted successfully"
+
+  /getAllProducts:
+    get:
+      tags:
+        - Products
+      summary: Get all products
+      description: Retrieve a list of all products
+      responses:
+        '200':
+          description: 'All products'
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ProductResponse'
+              example:
+                - productId: "1"
+                  productName: "Product 1"
+                  quantity: 100
+                  price: 10.99
+                - productId: "2"
+                  productName: "Product 2"
+                  quantity: 50
+                  price: 5.99
+
+  /inventory/{inventory_id}:
+    get:
+      summary: Get inventory
+      operationId: getinventory
+      tags:
+        - Inventory
+      parameters:
+        - name: inventory_id
+          in: path
+          required: true
+          description: ID of the inventory
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InventoryResponse'
+    delete:
+      summary: delete inventory
+      operationId: deleteinventory
+      tags:
+        - Inventory
+      parameters:
+        - name: inventory_id
+          in: path
+          required: true
+          description: ID of the inventory
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: Successful deleted
+
+    put:
+      summary: Update inventory
+      operationId: putinventory
+      tags:
+        - Inventory
+      parameters:
+        - name: inventory_id
+          in: path
+          required: true
+          description: ID of inventory
+          schema:
+            type: integer
+      requestBody:
+        description: pass update fields
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UpdateInventoryRequest'
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InventoryResponse'
+
+  /inventory:
+    post:
+      summary: insert inventory
+      operationId: postInventory
+      tags:
+        - Inventory
+      requestBody:
+        description: insert into inventory
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateInventoryRequest'
+      responses:
+        '201':
+          description: successfully inserted
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InventoryResponse'
+    get:
+      summary: Get All inventories
+      operationId: getall inventory details
+      tags:
+        - Inventory
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/InventoryResponse'
+
+  /customer:
+    get:
+      summary: Get all customers
+      operationId: getAllCustomers
+      tags:
+        - Customers
+      responses:
+        '200':
+          description: Successful operation
+ 
+    post:
+      summary: Create a new customer
+      operationId: createCustomer
+      tags:
+        - Customers
+      parameters:
+        - name: customer
+          in: path
+          description: The customer to create
+          required: true
+          schema:
+            $ref: "#/components/schemas/Customer"
+      responses:
+        '201':
+          description: Customer created successfully
+
+  /customer/{customerId}:
+    get:
+      summary: Get customer by ID
+      operationId: getCustomerById
+      tags:
+        - Customers
+      parameters:
+        - name: customerId
+          in: path
+          description: ID of the customer to retrieve
+          required: true
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Customer"
+        '404':
+          description: Customer not found
+ 
+    put:
+      summary: Update an existing customer
+      operationId: updateCustomer
+      tags:
+        - Customers
+      parameters:
+        - name: customerId
+          in: path
+          required: true
+          description: Updated customer data
+          schema:
+            type: integer
+            $ref: "#/components/schemas/Customer"
+      responses:
+        '200':
+          description: Customer updated successfully
+        '404':
+          description: Customer not found
+ 
+    delete:
+      summary: Delete an existing customer
+      operationId: deleteCustomer
+      tags:
+        - Customers
+      parameters:
+        - name: customerId
+          in: path
+          description: ID of the customer to delete
+          required: true
+          schema:
+            type: integer
+      responses:
+        '204':
+          description: Customer deleted successfully
+        '404':
+          description: Customer not found
+
+components:
+  schemas:
+    CreateOrderRequest:
+      type: object
+      properties:
+        orderId:
+          type: string
+        customerName:
+          type: string
+        products:
+          type: array
+          items:
+            $ref: '#/components/schemas/Product'
+        totalPrice:
+          type: number
+        createdAt:
+          type: string
+      example:
+        orderId: "12345"
+        customerName: "John Doe"
+        products:
+          - productId: "1"
+            productName: "Product 1"
+            quantity: 2
+            price: 10.99
+          - productId: "2"
+            productName: "Product 2"
+            quantity: 1
+            price: 5.99
+        totalPrice: 27.97
+        createdAt: "2024-02-28T12:00:00Z"
+
+    AddItemToCartRequest:
+      type: object
+      properties:
+        productId:
+          type: string
+        productName:
+          type: string
+        quantity:
+          type: integer
+        price:
+          type: number
+
+    Product:
+      type: object
+      properties:
+        productId:
+          type: string
+        productName:
+          type: string
+        quantity:
+          type: integer
+        price:
+          type: number
+
+    OrderResponse:
+      type: object
+      properties:
+        orderId:
+          type: string
+        status:
+          type: string
+      example:
+        orderId: "12345"
+        status: "created"
+
+    CartResponse:
+      type: object
+      properties:
+        cartId:
+          type: integer
+        status:
+          type: string
+        items:
+          type: array
+          items:
+            $ref: '#/components/schemas/Product'
+      example:
+        cartId: 1
+        status: "created"
+        items:
+          - productId: "1"
+            productName: "Product 1"
+            quantity: 2
+            price: 10.99
+
+    CreateProductRequest:
+      type: object
+      properties:
+        productName:
+          type: string
+        quantity:
+          type: integer
+        price:
+          type: number
+      example:
+        productName: "New Product"
+        quantity: 100
+        price: 19.99
+
+    ProductResponse:
+      type: object
+      properties:
+        productId:
+          type: string
+        productName:
+          type: string
+        quantity:
+          type: integer
+        price:
+          type: number
+      example:
+        productId: "1"
+        productName: "Product 1"
+        quantity: 100
+        price: 10.99
+
+    InventoryResponse:
+      type: object
+      properties:
+        inventoryId:
+          type: integer
+        productName:
+          type: string
+        quantity:
+          type: integer
+      example:
+        inventoryId: 1
+        productName: "Product 1"
+        quantity: 100
+
+    CreateInventoryRequest:
+      type: object
+      properties:
+        productName:
+          type: string
+        quantity:
+          type: integer
+      example:
+        productName: "New Product"
+        quantity: 100
+
+    UpdateInventoryRequest:
+      type: object
+      properties:
+        quantity:
+          type: integer
+      example:
+        quantity: 150
+
+    Customer:
+      type: object
+      properties:
+        customerId:
+          type: integer
+        firstName:
+          type: string
+        lastName:
+          type: string
+        email:
+          type: string
+      example:
+        customerId: 1
+        firstName: "John"
+        lastName: "Doe"
+        email: "john.doe@example.com"
