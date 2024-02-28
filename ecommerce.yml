@@ -738,10 +738,13 @@ components:
       properties:
         inventoryId:
           type: integer
-        productName:
-          type: string
-        quantity:
+        productId:
           type: integer
+        availableQuantity:
+          type: integer
+        createdAt:
+          type: string
+          format: date-time      
       example:
         inventoryId: 1
         productName: "Product 1"
@@ -750,9 +753,9 @@ components:
     CreateInventoryRequest:
       type: object
       properties:
-        productName:
+        productId:
           type: string
-        quantity:
+        availableQuantity:
           type: integer
       example:
         productName: "New Product"
@@ -761,7 +764,7 @@ components:
     UpdateInventoryRequest:
       type: object
       properties:
-        quantity:
+        updatedQuantity:
           type: integer
       example:
         quantity: 150
