@@ -508,7 +508,11 @@ paths:
       responses:
         '200':
           description: Successful operation
- 
+          schema:
+            type: array
+            items:
+              $ref: "#/definitions/Customer"
+
     post:
       summary: Create a new customer
       operationId: createCustomer
@@ -516,13 +520,13 @@ paths:
         - Customers
       parameters:
         - name: customer
-          in: path
+          in: body
           description: The customer to create
           required: true
           schema:
-            $ref: "#/components/schemas/Customer"
+            $ref: "#/definitions/Customer"
       responses:
-        '201':
+        '200':
           description: Customer created successfully
 
   /customer/{customerId}:
@@ -536,18 +540,15 @@ paths:
           in: path
           description: ID of the customer to retrieve
           required: true
-          schema:
-            type: integer
+          type: integer
       responses:
         '200':
           description: Successful operation
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/Customer"
+          schema:
+            $ref: "#/definitions/Customer"
         '404':
           description: Customer not found
- 
+
     put:
       summary: Update an existing customer
       operationId: updateCustomer
@@ -557,16 +558,20 @@ paths:
         - name: customerId
           in: path
           required: true
+          description: ID of the customer to update
+          type: integer
+        - name: customer
+          in: body
           description: Updated customer data
+          required: true
           schema:
-            type: integer
-            $ref: "#/components/schemas/Customer"
+            $ref: "#/definitions/Customer"
       responses:
         '200':
           description: Customer updated successfully
         '404':
           description: Customer not found
- 
+
     delete:
       summary: Delete an existing customer
       operationId: deleteCustomer
@@ -577,8 +582,7 @@ paths:
           in: path
           description: ID of the customer to delete
           required: true
-          schema:
-            type: integer
+          type: integer
       responses:
         '204':
           description: Customer deleted successfully
@@ -900,17 +904,8 @@ components:
 
     Customer:
       type: object
-      properties:
-        customerId:
-          type: integer
-        firstName:
-          type: string
-        lastName:
-          type: string
-        email:
-          type: string
-      example:
-        customerId: 1
-        firstName: "John"
-        lastName: "Doe"
-        email: "john.doe@example.com"
+    properties:
+      customerId:
+        type: integer
+      details:
+        type: string
