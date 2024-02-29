@@ -13,8 +13,6 @@ tags:
     description: Operations related to Inventory
   - name: Customers
     description: Operations related to Customers
-  - name: Products
-    description: Operations related to Products
 
 paths:
   /createOrder:
@@ -322,36 +320,32 @@ paths:
       summary: Get all products
       operationId: getProducts
       tags:
-        - product
+        - Products
       responses:
         '200':
           description: Successful response
-          content:
-            application/json:
-              schema:
-                type: array
-                items:
-                  $ref: "#/components/schemas/Product"
     post:
       summary: Create a new product
       operationId: createProduct
       tags:
-        - product
-      requestBody:
-        required: true
-        content:
-          application/json:
-            schema:
-              $ref: "#/components/schemas/Product"
+        - Products
+      parameters:
+        - name: Product
+          in: path
+          description: The product to create
+          required: true
+          schema:
+            $ref: "#/components/schemas/Products"
       responses:
-        '201':
-          description: Product created successfully
+          '201':
+            description: Product created successfully
+
   /products/{productId}:
     get:
       summary: Get product by ID
       operationId: getProductById
       tags:
-        - product
+        - Products
       parameters:
         - name: productId
           in: path
@@ -362,17 +356,13 @@ paths:
       responses:
         '200':
           description: Successful response
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/Product"
         '404':
           description: Product not found
     put:
       summary: Update product by ID
       operationId: updateProductById
       tags:
-        - product
+        - Products
       parameters:
         - name: productId
           in: path
@@ -380,12 +370,12 @@ paths:
           required: true
           schema:
             type: string
-      requestBody:
-        required: true
-        content:
-          application/json:
-            schema:
-              $ref: "#/components/schemas/Product"
+        - name: Product
+          in: path
+          description: Updated product data
+          required: true
+          schema:
+            $ref: "#/components/schemas/Products"
       responses:
         '200':
           description: Product updated successfully
@@ -395,7 +385,7 @@ paths:
       summary: Delete product by ID
       operationId: deleteProductById
       tags:
-        - product
+        - Products
       parameters:
         - name: productId
           in: path
@@ -408,7 +398,6 @@ paths:
           description: Product deleted successfully
         '404':
           description: Product not found
-
 
   /inventory/{inventory_id}:
     get:
@@ -517,26 +506,23 @@ paths:
       responses:
         '200':
           description: Successful operation
-          content:
-            application/json:
-              schema:
-                type: array
-                items:
-                  $ref: "#/components/schemas/Customer"
+ 
     post:
       summary: Create a new customer
       operationId: createCustomer
       tags:
         - Customers
-      requestBody:
-        required: true
-        content:
-          application/json:
-            schema:
-              $ref: "#/components/schemas/Customer"
+      parameters:
+        - name: customer
+          in: path
+          description: The customer to create
+          required: true
+          schema:
+            $ref: "#/components/schemas/Customer"
       responses:
-        '200':
+        '201':
           description: Customer created successfully
+
   /customer/{customerId}:
     get:
       summary: Get customer by ID
@@ -559,6 +545,7 @@ paths:
                 $ref: "#/components/schemas/Customer"
         '404':
           description: Customer not found
+ 
     put:
       summary: Update an existing customer
       operationId: updateCustomer
@@ -568,20 +555,16 @@ paths:
         - name: customerId
           in: path
           required: true
-          description: ID of the customer to update
+          description: Updated customer data
           schema:
             type: integer
-      requestBody:
-        required: true
-        content:
-          application/json:
-            schema:
-              $ref: "#/components/schemas/Customer"
+            $ref: "#/components/schemas/Customer"
       responses:
         '200':
           description: Customer updated successfully
         '404':
           description: Customer not found
+ 
     delete:
       summary: Delete an existing customer
       operationId: deleteCustomer
@@ -599,47 +582,9 @@ paths:
           description: Customer deleted successfully
         '404':
           description: Customer not found
- 
 
 components:
   schemas:
-    Product:
-      type: object
-      properties:
-        id:
-          type: integer
-        image:
-          type: string
-        name:
-          type: string
-        description:
-          type: string
-        price:
-          type: integer
-        quantity:
-          type: integer
-        unit:
-          type: string
-        category:
-          type: string  
-      required:
-        - id
-        - image
-        - name
-        - description
-        - price
-        - quantity
-        - unit
-        - category
-
-    Customer:
-      type: object
-      properties:
-        customerId:
-          type: integer
-        details:
-          type: string
-
     CreateOrderRequest:
       type: object
       properties:
@@ -682,6 +627,18 @@ components:
         price:
           type: number
 
+    Product:
+      type: object
+      properties:
+        productId:
+          type: string
+        productName:
+          type: string
+        quantity:
+          type: integer
+        price:
+          type: number
+
     OrderResponse:
       type: object
       properties:
@@ -713,6 +670,35 @@ components:
             quantity: 2
             price: 10.99
 
+    Products:
+      type: object
+      properties:
+        id:
+          type: integer
+        image:
+          type: string
+        name:
+          type: string
+        description:
+          type: string
+        price:
+          type: integer
+        quantity:
+          type: integer
+        unit:
+          type: string
+        category:
+          type: string  
+      required:
+        - id
+        - image
+        - name
+        - description
+        - price
+        - quantity
+        - unit
+        - category
+
     InventoryResponse:
       type: object
       properties:
@@ -727,9 +713,8 @@ components:
           format: date-time      
       example:
         inventoryId: 1
-        productId: 1
-        availableQuantity: 100
-        createdAt: 24-2-2024
+        productName: "Product 1"
+        quantity: 100
 
     CreateInventoryRequest:
       type: object
@@ -738,7 +723,9 @@ components:
           type: string
         availableQuantity:
           type: integer
-  
+      example:
+        productName: "New Product"
+        quantity: 100
 
     UpdateInventoryRequest:
       type: object
@@ -747,3 +734,20 @@ components:
           type: integer
       example:
         quantity: 150
+
+    Customer:
+      type: object
+      properties:
+        customerId:
+          type: integer
+        firstName:
+          type: string
+        lastName:
+          type: string
+        email:
+          type: string
+      example:
+        customerId: 1
+        firstName: "John"
+        lastName: "Doe"
+        email: "john.doe@example.com"
