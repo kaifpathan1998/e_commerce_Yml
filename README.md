@@ -419,3 +419,360 @@ fetch("http://localhost:4002/dev/inventory/95792b6b-5a86-4caf-8900-92d46ce1062b"
   .then((result) => console.log(result))
   .catch((error) => console.error(error));
   ```
+
+
+  
+## Product APIS
+ 
+### insert Product
+ 
+### /Product - insert Product
+ 
+- **Method:** POST
+- **Summary:** insert Product
+- **Operation ID:** insert Product
+- **Tags:** Request
+- **Responses:**
+  - **200:** Successful operation
+ 
+  ### Example:
+```bash
+  const myHeaders = new Headers();
+myHeaders.append("Content-Type", "application/json");
+ 
+const raw = JSON.stringify({
+  "name": {
+    "S": "washine machine"
+  },
+  "description": {
+    "S": "Updated Product Description"
+  },
+  "price": {
+    "N": 50
+  },
+  "quantity": {
+    "N": 50
+  },
+  "unit": {
+    "M": {
+      "kg": {
+        "N": 50
+      }
+    }
+  },
+  "category": {
+    "S": "electronics"
+  },
+  "image": {
+    "S": "C:\\Users\\Hi\\Pictures\\Screenshots\\Screenshot 2024-01-16 161402.png"
+  }
+});
+ 
+const requestOptions = {
+  method: "POST",
+  headers: myHeaders,
+  body: raw,
+  redirect: "follow"
+};
+ 
+fetch("http://localhost:3000/dev/product", requestOptions)
+  .then((response) => response.text())
+  .then((result) => console.log(result))
+  .catch((error) => console.error(error));
+  ```
+ 
+ 
+### get Product
+ 
+### /Product - get Product
+ 
+- **Method:** GET
+- **Summary:** get Product
+- **Operation ID:** get Product
+- **Tags:** Request
+- **Responses:**
+  - **200:** Successful operation
+ 
+  ### Example:
+```bash
+  const requestOptions = {
+  method: "GET",
+  headers: myHeaders,
+  redirect: "follow"
+};
+ 
+fetch("http://localhost:3000/dev/product", requestOptions)
+  .then((response) => response.text())
+  .then((result) => console.log(result))
+  .catch((error) => console.error(error));
+  ```
+ 
+  ### product get by id
+ 
+  ### /Product - Product get by id
+ 
+- **Method:** GET
+- **Summary:** Product get by id
+- **Operation ID:** Product get by id
+- **Tags:** Request
+- **Responses:**
+  - **200:** Successful operation
+ 
+  ### Example:
+```bash
+  const requestOptions = {
+  method: "GET",
+  redirect: "follow"
+};
+ 
+fetch("http://localhost:3000/dev/product/04ee1f11-09e8-488e-91c9-f64aede3eee1", requestOptions)
+  .then((response) => response.text())
+  .then((result) => console.log(result))
+  .catch((error) => console.error(error));
+ ```
+### update Product
+ 
+### /Product - update Product
+ 
+- **Method:** PUT
+- **Summary:** update Product
+- **Operation ID:** update Product
+- **Tags:** Request
+- **Responses:**
+  - **200:** Successful operation
+ 
+  ### Example:
+```bash
+  const myHeaders = new Headers();
+myHeaders.append("Content-Type", "application/json");
+ 
+const raw = JSON.stringify({
+  "name": {
+    "S": "apple"
+  },
+  "description": {
+    "S": "Updated Product Description"
+  },
+  "price": {
+    "N": 300
+  },
+  "quantity": {
+    "N": 100
+  },
+  "unit": {
+    "M": {
+      "kg": {
+        "N": 100
+      }
+    }
+  },
+  "category": {
+    "S": "fruits"
+  },
+  "image": {
+    "S": "https://example.com/image.jpg"
+  }
+});
+ 
+const requestOptions = {
+  method: "PUT",
+  headers: myHeaders,
+  body: raw,
+  redirect: "follow"
+};
+ 
+fetch("http://localhost:3000/dev/product/04ee1f11-09e8-488e-91c9-f64aede3eee1", requestOptions)
+  .then((response) => response.text())
+  .then((result) => console.log(result))
+  .catch((error) => console.error(error));
+  ```
+ 
+ ### delete Product
+ 
+### /Product - delete Product
+ 
+- **Method:** DELETE
+- **Summary:** delete Product
+- **Operation ID:** delete Product
+- **Tags:** Request
+- **Responses:**
+  - **200:** Successful operation
+ 
+  ### Example:
+```bash
+  const requestOptions = {
+  method: "DELETE",
+  redirect: "follow"
+};
+ 
+fetch("http://localhost:3000/dev/product/04ee1f11-09e8-488e-91c9-f64aede3eee1", requestOptions)
+  .then((response) => response.text())
+  .then((result) => console.log(result))
+  .catch((error) => console.error(error));
+  ```
+
+
+
+## customer APIS
+
+### insert customer
+
+### /customer - insert customer
+
+- **Method:** POST
+- **Summary:** insert customer
+- **Operation ID:** insert customer
+- **Tags:** Request
+- **Responses:**
+
+  - **200:** Successful operation
+
+  ### Example:
+
+```bash
+const myHeaders = new Headers();
+myHeaders.append("Content-Type", "application/json");
+
+const raw = JSON.stringify({
+  "customer_details": {
+    "name": "mddsa",
+    "email": "ssdd",
+    "phno": "2",
+    "address": "ddsfdsddsdffadddm",
+    "city": "hydewfdsdd",
+    "country": "india"
+  }
+});
+
+const requestOptions = {
+  method: "POST",
+  headers: myHeaders,
+  body: raw,
+  redirect: "follow"
+};
+
+fetch("http://localhost:3000/customer", requestOptions)
+  .then((response) => response.text())
+  .then((result) => console.log(result))
+  .catch((error) => console.error(error));
+```
+
+### /customer - get all customer
+
+- **Method:** POST
+- **Summary:** get all customer
+- **Operation ID:** get all customer
+- **Tags:** Request
+- **Responses:**
+
+  - **200:** Successful operation
+
+  ### Example:
+
+```bash
+const requestOptions = {
+  method: "GET",
+  redirect: "follow"
+};
+
+fetch("http://localhost:3000/customer", requestOptions)
+  .then((response) => response.text())
+  .then((result) => console.log(result))
+  .catch((error) => console.error(error));
+```
+
+### customer get by id
+
+### /customer - customer get by id
+
+- **Method:** GET
+- **Summary:** customer get by id
+- **Operation ID:** customer get by id
+- **Tags:** Request
+- **Responses:**
+
+  - **200:** Successful operation
+
+  ### Example:
+
+```bash
+const requestOptions = {
+  method: "GET",
+  redirect: "follow"
+};
+
+fetch("http://localhost:3000/customer/9af5cc9e-38d7-4075-b0dc-840e5bcbfc1d", requestOptions)
+  .then((response) => response.text())
+  .then((result) => console.log(result))
+  .catch((error) => console.error(error));
+```
+
+### update customer
+
+### /customer - update Product
+
+- **Method:** PUT
+- **Summary:** update customer
+- **Operation ID:** update customer
+- **Tags:** Request
+- **Responses:**
+
+  - **200:** Successful operation
+
+  ### Example:
+
+```bash
+const myHeaders = new Headers();
+myHeaders.append("Content-Type", "application/json");
+
+const raw = JSON.stringify({
+  "customer_details": {
+    "name": "ahbvasdk",
+    "email": "examplsdfsde.com",
+    "phone": "732535"
+  }
+});
+
+const requestOptions = {
+  method: "PUT",
+  headers: myHeaders,
+  body: raw,
+  redirect: "follow"
+};
+
+fetch("http://localhost:3000/customer/9af5cc9e-38d7-4075-b0dc-840e5bcbfc1d", requestOptions)
+  .then((response) => response.text())
+  .then((result) => console.log(result))
+  .catch((error) => console.error(error));
+```
+
+### delete customer
+
+### /customer - delete customer
+
+- **Method:** DELETE
+- **Summary:** delete customer
+- **Operation ID:** delete customer
+- **Tags:** Request
+- **Responses:**
+
+  - **200:** Successful operation
+
+  ### Example:
+
+```bash
+const myHeaders = new Headers();
+myHeaders.append("Content-Type", "application/json");
+
+const requestOptions = {
+  method: "DELETE",
+  headers: myHeaders,
+  redirect: "follow"
+};
+
+fetch("http://localhost:3000/customer/a35acb7c-92af-452e-add8-6619511b3fe9", requestOptions)
+  .then((response) => response.text())
+  .then((result) => console.log(result))
+  .catch((error) => console.error(error));
+```
+
