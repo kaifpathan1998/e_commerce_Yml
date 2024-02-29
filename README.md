@@ -14,7 +14,7 @@ This APIS documentation provides details on the endpoints and operations of the 
 - **Tags:** Request
 - **Responses:**
   - **200:** Successful operation
-
+    ### Example:
 ```bash
 const myHeaders = new Headers();
 myHeaders.append("", "");
@@ -58,7 +58,7 @@ fetch("baseUrl/dev/order", requestOptions)
 - **Tags:** Request
 - **Responses:**
   - **200:** Successful operation
-
+    ### Example:
 ```bash
 const myHeaders = new Headers();
 myHeaders.append("", "");
@@ -90,7 +90,7 @@ fetch("baseUrl/dev/order/{Id}", requestOptions)
 - **Tags:** Request
 - **Responses:**
   - **200:** Successful operation
-
+    ### Example:
 ```bash
 const myHeaders = new Headers();
 myHeaders.append("", "");
