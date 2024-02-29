@@ -1,6 +1,6 @@
 Ecommerce API Documentation
 
-This API documentation provides details on the endpoints and operations of the Ecommerce Service. Below are the available API endpoints with their corresponding methods, parameters, and responses.
+This APIS documentation provides details on the endpoints and operations of the Ecommerce Service. Below are the available API endpoints with their corresponding methods, parameters, and responses.
 
 ## Order APIS
 
@@ -18,8 +18,22 @@ This API documentation provides details on the endpoints and operations of the E
 ```bash
 const myHeaders = new Headers();
 myHeaders.append("", "");
+myHeaders.append("Content-Type", "application/json");
 
-const raw = "";
+const raw = JSON.stringify({
+  "products": [
+    {
+      "name": "Product 1",
+      "price": 10.99
+    },
+    {
+      "name": "Product 2",
+      "price": 20.49
+    }
+  ],
+  "totalPrice": "31.48",
+  "createdAt": "2024-02-07T10:00:00Z"
+});
 
 const requestOptions = {
   method: "POST",
@@ -28,7 +42,7 @@ const requestOptions = {
   redirect: "follow"
 };
 
-fetch("baseUrl/dev/order", requestOptions)
+fetch("http://localhost:3000/dev/order", requestOptions)
   .then((response) => response.text())
   .then((result) => console.log(result))
   .catch((error) => console.error(error));
@@ -36,7 +50,7 @@ fetch("baseUrl/dev/order", requestOptions)
 ```
 ### Create CancelOrder
 
-###  /Order/{Id}    Create Order
+###  /Order/{Id}    Create CancelOrder
 
 - **Method:** POST
 - **Summary:** Create CancelOrder
@@ -54,7 +68,9 @@ const raw = "";
 const requestOptions = {
   method: "POST",
   headers: myHeaders,
-  body: raw,
+  body: JSON.stringify({
+    "Status": "Cancell Order")
+  }
   redirect: "follow"
 };
 
@@ -84,7 +100,9 @@ const raw = "";
 const requestOptions = {
   method: "POST",
   headers: myHeaders,
-  body: raw,
+  body: JSON.stringify({
+    "Status": "Close Order")
+  }
   redirect: "follow"
 };
 
@@ -179,8 +197,22 @@ fetch("baseUrl/dev/order/{id}", requestOptions)
 ```bash
 const myHeaders = new Headers();
 myHeaders.append("", "");
+myHeaders.append("Content-Type", "application/json");
 
-const raw = "";
+const raw = JSON.stringify({
+  "products": [
+    {
+      "name": "Product 1",
+      "price": 10.99
+    },
+    {
+      "name": "Product 2",
+      "price": 20.49
+    }
+  ],
+  "totalPrice": "31.48",
+  "createdAt": "2024-02-07T10:00:00Z"
+});
 
 const requestOptions = {
   method: "PUT",
@@ -189,7 +221,7 @@ const requestOptions = {
   redirect: "follow"
 };
 
-fetch("baseUrl/dev/order/{id}", requestOptions)
+fetch("http://localhost:3000/dev/order/12", requestOptions)
   .then((response) => response.text())
   .then((result) => console.log(result))
   .catch((error) => console.error(error));
