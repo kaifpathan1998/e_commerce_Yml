@@ -776,3 +776,145 @@ fetch("http://localhost:3000/customer/a35acb7c-92af-452e-add8-6619511b3fe9", req
   .catch((error) => console.error(error));
 ```
 
+ 
+## cart APIS
+ 
+### insert cart
+ 
+### /cart - insert cart
+ 
+- **Method:** POST
+- **Summary:** insert cart
+- **Operation ID:** insert cart
+- **Tags:** Request
+- **Responses:**
+  - **200:** Successful operation
+ 
+  ### Example:
+```bash
+ const myHeaders = new Headers();
+myHeaders.append("Content-Type", "application/json");
+
+const raw = JSON.stringify({
+  "itemId": "7",
+  "quantity": 67
+});
+
+const requestOptions = {
+  method: "POST",
+  headers: myHeaders,
+  body: raw,
+  redirect: "follow"
+};
+
+fetch("http://localhost:3000/insertCart", requestOptions)
+  .then((response) => response.text())
+  .then((result) => console.log(result))
+  .catch((error) => console.error(error));
+  ```
+ 
+ 
+### get cart
+ 
+### /cart - get cart
+ 
+- **Method:** GET
+- **Summary:** get cart
+- **Operation ID:** get cart
+- **Tags:** Request
+- **Responses:**
+  - **200:** Successful operation
+ 
+  ### Example:
+```bash
+ const requestOptions = {
+  method: "GET",
+  redirect: "follow"
+};
+
+fetch("http://localhost:3000/dev/cart", requestOptions)
+  .then((response) => response.text())
+  .then((result) => console.log(result))
+  .catch((error) => console.error(error));
+  ```
+ 
+  ### cart get by id
+ 
+  ### /cart - cart get by id
+ 
+- **Method:** GET
+- **Summary:** cart get by id
+- **Operation ID:** cart get by id
+- **Tags:** Request
+- **Responses:**
+  - **200:** Successful operation
+ 
+  ### Example:
+```bash
+ const requestOptions = {
+  method: "GET",
+  redirect: "follow"
+};
+
+fetch("http://localhost:3000/dev/cart/2", requestOptions)
+  .then((response) => response.text())
+  .then((result) => console.log(result))
+  .catch((error) => console.error(error));
+ ```
+### update cart
+ 
+### /cart - update cart
+ 
+- **Method:** PUT
+- **Summary:** update cart
+- **Operation ID:** update cart
+- **Tags:** Request
+- **Responses:**
+  - **200:** Successful operation
+ 
+  ### Example:
+```bash
+ const myHeaders = new Headers();
+myHeaders.append("Content-Type", "application/json");
+
+const raw = JSON.stringify({
+  "quantity": 22
+});
+
+const requestOptions = {
+  method: "PUT",
+  headers: myHeaders,
+  body: raw,
+  redirect: "follow"
+};
+
+fetch("http://localhost:3000/dev/cart/7", requestOptions)
+  .then((response) => response.text())
+  .then((result) => console.log(result))
+  .catch((error) => console.error(error));
+  ```
+ 
+ ### delete cart
+ 
+### /cart - delete cart
+ 
+- **Method:** DELETE
+- **Summary:** delete cart
+- **Operation ID:** delete cart
+- **Tags:** Request
+- **Responses:**
+  - **200:** Successful operation
+ 
+  ### Example:
+```bash
+ const requestOptions = {
+  method: "DELETE",
+  redirect: "follow"
+};
+
+fetch("http://localhost:3000/dev/cart/3", requestOptions)
+  .then((response) => response.text())
+  .then((result) => console.log(result))
+  .catch((error) => console.error(error));
+  ```
+  
