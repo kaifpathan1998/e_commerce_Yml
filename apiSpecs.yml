@@ -12,8 +12,8 @@ tags:
     description: Operations related to Inventory
   - name: Customers
     description: Operations related to Customers
-  - name: product
-    description: Operations related to Products
+  - name: Products
+    description: Operations related to Productss
 
 paths:
   /createOrder:
@@ -189,12 +189,12 @@ paths:
               schema:
                 $ref: '#/components/schemas/CartResponse'
 
-  /addProductCart/{cartId}:
+  /addProductsCart/{cartId}:
     post:
       tags:
         - Carts
-      summary: Add product in Cart By CartId
-      description: Add product in Cart By CartId
+      summary: Add Products in Cart By CartId
+      description: Add Products in Cart By CartId
       parameters:
         - name: cartId
           in: path
@@ -209,7 +209,7 @@ paths:
               $ref: '#/components/schemas/AddItemToCartRequest'
       responses:
         '200':
-          description: Product Added To Cart
+          description: Products Added To Cart
           content:
             application/json:
               schema:
@@ -234,12 +234,12 @@ paths:
                 - cartId: 1
                   status: "created"
                   items:
-                    - ProductsId: "1"
-                      productName: "Product 1"
+                    - ProductssId: "1"
+                      ProductsName: "Products 1"
                       quantity: 2
                       price: 10.99
-                    - ProductsId: "2"
-                      productName: "Product 2"
+                    - ProductssId: "2"
+                      ProductsName: "Products 2"
                       quantity: 1
                       price: 5.99
 
@@ -266,8 +266,8 @@ paths:
                 - cartId: 1
                   status: "created"
                   items:
-                    - ProductsId: "1"
-                      productName: "Product 1"
+                    - ProductssId: "1"
+                      ProductsName: "Products 1"
                       quantity: 2
                       price: 10.99
 
@@ -316,12 +316,12 @@ paths:
                 example:
                   message: "Cart deleted successfully"
 
-  /products:
+  /Productss:
     get:
-      summary: Get all products
-      operationId: getProducts
+      summary: Get all Productss
+      operationId: getProductss
       tags:
-        - product
+        - Products
       responses:
         '200':
           description: Successful response
@@ -330,31 +330,31 @@ paths:
               schema:
                 type: array
                 items:
-                  $ref: "#/components/schemas/Product"
+                  $ref: "#/components/schemas/Products"
     post:
-      summary: Create a new product
-      operationId: createProduct
+      summary: Create a new Products
+      operationId: createProducts
       tags:
-        - product
+        - Products
       requestBody:
         required: true
         content:
           application/json:
             schema:
-              $ref: "#/components/schemas/Product"
+              $ref: "#/components/schemas/Products"
       responses:
         '201':
-          description: Product created successfully
-  /products/{productId}:
+          description: Products created successfully
+  /Productss/{ProductsId}:
     get:
-      summary: Get product by ID
-      operationId: getProductById
+      summary: Get Products by ID
+      operationId: getProductsById
       tags:
-        - product
+        - Products
       parameters:
-        - name: productId
+        - name: ProductsId
           in: path
-          description: ID of the product to retrieve
+          description: ID of the Products to retrieve
           required: true
           schema:
             type: string
@@ -364,18 +364,18 @@ paths:
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/Product"
+                $ref: "#/components/schemas/Products"
         '404':
-          description: Product not found
+          description: Products not found
     put:
-      summary: Update product by ID
-      operationId: updateProductById
+      summary: Update Products by ID
+      operationId: updateProductsById
       tags:
-        - product
+        - Products
       parameters:
-        - name: productId
+        - name: ProductsId
           in: path
-          description: ID of the product to update
+          description: ID of the Products to update
           required: true
           schema:
             type: string
@@ -384,29 +384,29 @@ paths:
         content:
           application/json:
             schema:
-              $ref: "#/components/schemas/Product"
+              $ref: "#/components/schemas/Products"
       responses:
         '200':
-          description: Product updated successfully
+          description: Products updated successfully
         '404':
-          description: Product not found
+          description: Products not found
     delete:
-      summary: Delete product by ID
-      operationId: deleteProductById
+      summary: Delete Products by ID
+      operationId: deleteProductsById
       tags:
-        - product
+        - Products
       parameters:
-        - name: productId
+        - name: ProductsId
           in: path
-          description: ID of the product to delete
+          description: ID of the Products to delete
           required: true
           schema:
             type: string
       responses:
         '204':
-          description: Product deleted successfully
+          description: Products deleted successfully
         '404':
-          description: Product not found
+          description: Products not found
 
 
   /inventory/{inventory_id}:
@@ -602,7 +602,7 @@ paths:
 
 components:
   schemas:
-    Product:
+    Products:
       type: object
       properties:
         id:
@@ -646,10 +646,10 @@ components:
           type: string
         customerName:
           type: string
-        products:
+        Productss:
           type: array
           items:
-            $ref: '#/components/schemas/Product'
+            $ref: '#/components/schemas/Products'
         totalPrice:
           type: number
         createdAt:
@@ -657,13 +657,13 @@ components:
       example:
         orderId: "12345"
         customerName: "John Doe"
-        products:
-          - ProductsId: "1"
-            productName: "Product 1"
+        Productss:
+          - ProductssId: "1"
+            ProductsName: "Products 1"
             quantity: 2
             price: 10.99
-          - ProductsId: "2"
-            productName: "Product 2"
+          - ProductssId: "2"
+            ProductsName: "Products 2"
             quantity: 1
             price: 5.99
         totalPrice: 27.97
@@ -672,9 +672,9 @@ components:
     AddItemToCartRequest:
       type: object
       properties:
-        productId:
+        ProductsId:
           type: string
-        productName:
+        ProductsName:
           type: string
         quantity:
           type: integer
@@ -702,13 +702,13 @@ components:
         items:
           type: array
           items:
-            $ref: '#/components/schemas/Product'
+            $ref: '#/components/schemas/Products'
       example:
         cartId: 1
         status: "created"
         items:
-          - ProductsId: "1"
-            productName: "Product 1"
+          - ProductssId: "1"
+            ProductsName: "Products 1"
             quantity: 2
             price: 10.99
 
@@ -717,7 +717,7 @@ components:
       properties:
         inventoryId:
           type: integer
-        productId:
+        ProductsId:
           type: integer
         availableQuantity:
           type: integer
@@ -726,19 +726,19 @@ components:
           format: date-time      
       example:
         inventoryId: 1
-        productId: 1
+        ProductsId: 1
         availableQuantity: 100
         createdAt: "2024-02-28T12:00:00Z"
 
     CreateInventoryRequest:
       type: object
       properties:
-        productId:
+        ProductsId:
           type: string
         availableQuantity:
           type: integer
       example:
-        productId: 1
+        ProductsId: 1
         availableQuantity: 100
 
     UpdateInventoryRequest:
