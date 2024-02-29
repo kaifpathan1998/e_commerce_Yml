@@ -292,7 +292,7 @@ const requestOptions = {
   redirect: "follow"
 };
  
-fetch("baseurl/dev/inventory", requestOptions)
+fetch("baseUrl/dev/inventory", requestOptions)
   .then((response) => response.text())
   .then((result) => console.log(result))
   .catch((error) => console.error(error));
@@ -319,7 +319,7 @@ const requestOptions = {
   redirect: "follow"
 };
  
-fetch("http://localhost:4002/dev/inventory", requestOptions)
+fetch("baseUrl/dev/inventory", requestOptions)
   .then((response) => response.text())
   .then((result) => console.log(result))
   .catch((error) => console.error(error));
@@ -345,7 +345,7 @@ const requestOptions = {
   redirect: "follow"
 };
  
-fetch("baseurl/dev/inventory/95792b6b-5a86-4caf-8900-92d46ce1062b", requestOptions)
+fetch("baseUrl/dev/inventory/95792b6b-5a86-4caf-8900-92d46ce1062b", requestOptions)
   .then((response) => response.text())
   .then((result) => console.log(result))
   .catch((error) => console.error(error));
@@ -379,7 +379,7 @@ const requestOptions = {
   redirect: "follow"
 };
  
-fetch("baseurl/dev/inventory/95792b6b-5a86-4caf-8900-92d46ce1062b", requestOptions)
+fetch("baseUrl/dev/inventory/95792b6b-5a86-4caf-8900-92d46ce1062b", requestOptions)
   .then((response) => response.text())
   .then((result) => console.log(result))
   .catch((error) => console.error(error));
@@ -414,7 +414,7 @@ const requestOptions = {
   redirect: "follow"
 };
  
-fetch("baseurl/dev/inventory/95792b6b-5a86-4caf-8900-92d46ce1062b", requestOptions)
+fetch("baseUrl/dev/inventory/95792b6b-5a86-4caf-8900-92d46ce1062b", requestOptions)
   .then((response) => response.text())
   .then((result) => console.log(result))
   .catch((error) => console.error(error));
