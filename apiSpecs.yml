@@ -13,6 +13,8 @@ tags:
     description: Operations related to Inventory
   - name: Customers
     description: Operations related to Customers
+  - name: Products
+    description: Operations related to Products
 
 paths:
   /createOrder:
@@ -583,6 +585,166 @@ paths:
         '404':
           description: Customer not found
 
+  /products:
+    get:
+      summary: Retrieve a list of all products
+      responses:
+        200:
+          description: Successful response
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/Product'
+    post:
+      summary: Create a new product
+      parameters:
+        - in: body
+          name: body
+          required: true
+          schema:
+            type: object
+            properties:
+              id:
+                type: string
+              image:
+                type: string
+              name:
+                type: string
+              description:
+                type: string
+              price:
+                type: number
+              quantity:
+                type: integer
+              unit:
+                type: string
+                enum:
+                  - PIECE
+                  - KG
+              category:
+                type: string
+                enum:
+                  - VEGETABLES
+                  - LEAFY_VEGETABLES
+                  - FRUITS
+      responses:
+        200:
+          description: Product created successfully
+
+  /products/{id}:
+    get:
+      summary: Retrieve a specific product by ID
+      parameters:
+        - name: id
+          in: path
+          required: true
+          type: string
+      responses:
+        200:
+          description: Successful response
+          schema:
+            $ref: '#/definitions/Product'
+    put:
+      summary: Update an existing product by ID
+      parameters:
+        - name: id
+          in: path
+          required: true
+          type: string
+        - in: body
+          name: body
+          required: true
+          schema:
+            type: object
+            properties:
+              id:
+                type: string
+              image:
+                type: string
+              name:
+                type: string
+              description:
+                type: string
+              price:
+                type: number
+              quantity:
+                type: integer
+              unit:
+                type: string
+                enum:
+                  - PIECE
+                  - KG
+              category:
+                type: string
+                enum:
+                  - VEGETABLES
+                  - LEAFY_VEGETABLES
+                  - FRUITS
+      responses:
+        200:
+          description: Product updated successfully
+
+    delete:
+      summary: Delete a product by ID
+      parameters:
+        - name: id
+          in: path
+          required: true
+          type: string
+      responses:
+        200:
+          description: Product deleted successfully
+
+  /products/category/{category}:
+    get:
+      summary: Retrieve a list of products by category
+      parameters:
+        - name: category
+          in: path
+          required: true
+          type: string
+      responses:
+        200:
+          description: Successful response
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/Product'
+  /products/search:
+    get:
+      summary: Search for products by name
+      parameters:
+        - name: name
+          in: query
+          required: true
+          type: string
+      responses:
+        200:
+          description: Successful response
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/Product'
+  /products/filter:
+    get:
+      summary: Filter products by price range
+      parameters:
+        - name: price_min
+          in: query
+          required: true
+          type: number
+        - name: price_max
+          in: query
+          required: true
+          type: number
+      responses:
+        200:
+          description: Successful response
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/Product'
+
 components:
   schemas:
     CreateOrderRequest:
@@ -669,6 +831,8 @@ components:
             productName: "Product 1"
             quantity: 2
             price: 10.99
+
+
 
     Products:
       type: object
