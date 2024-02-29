@@ -877,8 +877,9 @@ components:
           format: date-time      
       example:
         inventoryId: 1
-        productName: "Product 1"
-        quantity: 100
+        productId: 1
+        availableQuantity: 100
+        createdAt: 24-2-2024
 
     CreateInventoryRequest:
       type: object
@@ -887,9 +888,7 @@ components:
           type: string
         availableQuantity:
           type: integer
-      example:
-        productName: "New Product"
-        quantity: 100
+  
 
     UpdateInventoryRequest:
       type: object
