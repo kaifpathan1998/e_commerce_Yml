@@ -7,13 +7,12 @@ tags:
     description: Operations related to Orders
   - name: Carts
     description: Operations related to Carts
-  - name: Products
-    description: Operations related to Products
+  
   - name: Inventory
     description: Operations related to Inventory
   - name: Customers
     description: Operations related to Customers
-  - name: Products
+  - name: product
     description: Operations related to Products
 
 paths:
@@ -727,8 +726,9 @@ components:
           format: date-time      
       example:
         inventoryId: 1
-        productName: "Product 1"
-        quantity: 100
+        productId: 1
+        availableQuantity: 100
+        createdAt: "2024-02-28T12:00:00Z"
 
     CreateInventoryRequest:
       type: object
@@ -738,8 +738,8 @@ components:
         availableQuantity:
           type: integer
       example:
-        productName: "New Product"
-        quantity: 100
+        productId: 1
+        availableQuantity: 100
 
     UpdateInventoryRequest:
       type: object
@@ -747,4 +747,4 @@ components:
         updatedQuantity:
           type: integer
       example:
-        quantity: 150
+        updatedQuantity: 150
