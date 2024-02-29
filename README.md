@@ -42,7 +42,7 @@ const requestOptions = {
   redirect: "follow"
 };
 
-fetch("http://localhost:3000/dev/order", requestOptions)
+fetch("baseUrl/dev/order", requestOptions)
   .then((response) => response.text())
   .then((result) => console.log(result))
   .catch((error) => console.error(error));
@@ -221,7 +221,7 @@ const requestOptions = {
   redirect: "follow"
 };
 
-fetch("http://localhost:3000/dev/order/12", requestOptions)
+fetch("baseUrl/dev/order/12", requestOptions)
   .then((response) => response.text())
   .then((result) => console.log(result))
   .catch((error) => console.error(error));
@@ -292,7 +292,7 @@ const requestOptions = {
   redirect: "follow"
 };
  
-fetch("http://localhost:4002/dev/inventory", requestOptions)
+fetch("baseurl/dev/inventory", requestOptions)
   .then((response) => response.text())
   .then((result) => console.log(result))
   .catch((error) => console.error(error));
@@ -345,7 +345,7 @@ const requestOptions = {
   redirect: "follow"
 };
  
-fetch("http://localhost:4002/dev/inventory/95792b6b-5a86-4caf-8900-92d46ce1062b", requestOptions)
+fetch("baseurl/dev/inventory/95792b6b-5a86-4caf-8900-92d46ce1062b", requestOptions)
   .then((response) => response.text())
   .then((result) => console.log(result))
   .catch((error) => console.error(error));
@@ -379,7 +379,7 @@ const requestOptions = {
   redirect: "follow"
 };
  
-fetch("http://localhost:4002/dev/inventory/95792b6b-5a86-4caf-8900-92d46ce1062b", requestOptions)
+fetch("baseurl/dev/inventory/95792b6b-5a86-4caf-8900-92d46ce1062b", requestOptions)
   .then((response) => response.text())
   .then((result) => console.log(result))
   .catch((error) => console.error(error));
@@ -414,7 +414,7 @@ const requestOptions = {
   redirect: "follow"
 };
  
-fetch("http://localhost:4002/dev/inventory/95792b6b-5a86-4caf-8900-92d46ce1062b", requestOptions)
+fetch("baseurl/dev/inventory/95792b6b-5a86-4caf-8900-92d46ce1062b", requestOptions)
   .then((response) => response.text())
   .then((result) => console.log(result))
   .catch((error) => console.error(error));
@@ -475,7 +475,7 @@ const requestOptions = {
   redirect: "follow"
 };
  
-fetch("http://localhost:3000/dev/product", requestOptions)
+fetch("baseUrl/dev/product", requestOptions)
   .then((response) => response.text())
   .then((result) => console.log(result))
   .catch((error) => console.error(error));
@@ -501,7 +501,7 @@ fetch("http://localhost:3000/dev/product", requestOptions)
   redirect: "follow"
 };
  
-fetch("http://localhost:3000/dev/product", requestOptions)
+fetch("baseUrl/dev/product", requestOptions)
   .then((response) => response.text())
   .then((result) => console.log(result))
   .catch((error) => console.error(error));
@@ -525,7 +525,7 @@ fetch("http://localhost:3000/dev/product", requestOptions)
   redirect: "follow"
 };
  
-fetch("http://localhost:3000/dev/product/04ee1f11-09e8-488e-91c9-f64aede3eee1", requestOptions)
+fetch("baseUrl/dev/product/04ee1f11-09e8-488e-91c9-f64aede3eee1", requestOptions)
   .then((response) => response.text())
   .then((result) => console.log(result))
   .catch((error) => console.error(error));
@@ -581,7 +581,7 @@ const requestOptions = {
   redirect: "follow"
 };
  
-fetch("http://localhost:3000/dev/product/04ee1f11-09e8-488e-91c9-f64aede3eee1", requestOptions)
+fetch("baseUrl/dev/product/04ee1f11-09e8-488e-91c9-f64aede3eee1", requestOptions)
   .then((response) => response.text())
   .then((result) => console.log(result))
   .catch((error) => console.error(error));
@@ -605,7 +605,7 @@ fetch("http://localhost:3000/dev/product/04ee1f11-09e8-488e-91c9-f64aede3eee1", 
   redirect: "follow"
 };
  
-fetch("http://localhost:3000/dev/product/04ee1f11-09e8-488e-91c9-f64aede3eee1", requestOptions)
+fetch("baseUrl/dev/product/04ee1f11-09e8-488e-91c9-f64aede3eee1", requestOptions)
   .then((response) => response.text())
   .then((result) => console.log(result))
   .catch((error) => console.error(error));
@@ -651,7 +651,7 @@ const requestOptions = {
   redirect: "follow"
 };
 
-fetch("http://localhost:3000/customer", requestOptions)
+fetch("baseUrl/customer", requestOptions)
   .then((response) => response.text())
   .then((result) => console.log(result))
   .catch((error) => console.error(error));
@@ -675,7 +675,7 @@ const requestOptions = {
   redirect: "follow"
 };
 
-fetch("http://localhost:3000/customer", requestOptions)
+fetch("baseUrl/customer", requestOptions)
   .then((response) => response.text())
   .then((result) => console.log(result))
   .catch((error) => console.error(error));
@@ -701,7 +701,7 @@ const requestOptions = {
   redirect: "follow"
 };
 
-fetch("http://localhost:3000/customer/9af5cc9e-38d7-4075-b0dc-840e5bcbfc1d", requestOptions)
+fetch("baseUrl/customer/9af5cc9e-38d7-4075-b0dc-840e5bcbfc1d", requestOptions)
   .then((response) => response.text())
   .then((result) => console.log(result))
   .catch((error) => console.error(error));
@@ -740,7 +740,7 @@ const requestOptions = {
   redirect: "follow"
 };
 
-fetch("http://localhost:3000/customer/9af5cc9e-38d7-4075-b0dc-840e5bcbfc1d", requestOptions)
+fetch("baseUrl/customer/9af5cc9e-38d7-4075-b0dc-840e5bcbfc1d", requestOptions)
   .then((response) => response.text())
   .then((result) => console.log(result))
   .catch((error) => console.error(error));
@@ -770,7 +770,7 @@ const requestOptions = {
   redirect: "follow"
 };
 
-fetch("http://localhost:3000/customer/a35acb7c-92af-452e-add8-6619511b3fe9", requestOptions)
+fetch("baseUrl/customer/a35acb7c-92af-452e-add8-6619511b3fe9", requestOptions)
   .then((response) => response.text())
   .then((result) => console.log(result))
   .catch((error) => console.error(error));
@@ -807,7 +807,7 @@ const requestOptions = {
   redirect: "follow"
 };
 
-fetch("http://localhost:3000/insertCart", requestOptions)
+fetch("baseUrl/insertCart", requestOptions)
   .then((response) => response.text())
   .then((result) => console.log(result))
   .catch((error) => console.error(error));
@@ -832,7 +832,7 @@ fetch("http://localhost:3000/insertCart", requestOptions)
   redirect: "follow"
 };
 
-fetch("http://localhost:3000/dev/cart", requestOptions)
+fetch("baseUrl/dev/cart", requestOptions)
   .then((response) => response.text())
   .then((result) => console.log(result))
   .catch((error) => console.error(error));
@@ -856,7 +856,7 @@ fetch("http://localhost:3000/dev/cart", requestOptions)
   redirect: "follow"
 };
 
-fetch("http://localhost:3000/dev/cart/2", requestOptions)
+fetch("baseUrl/dev/cart/2", requestOptions)
   .then((response) => response.text())
   .then((result) => console.log(result))
   .catch((error) => console.error(error));
@@ -888,7 +888,7 @@ const requestOptions = {
   redirect: "follow"
 };
 
-fetch("http://localhost:3000/dev/cart/7", requestOptions)
+fetch("baseUrl/dev/cart/7", requestOptions)
   .then((response) => response.text())
   .then((result) => console.log(result))
   .catch((error) => console.error(error));
@@ -912,7 +912,7 @@ fetch("http://localhost:3000/dev/cart/7", requestOptions)
   redirect: "follow"
 };
 
-fetch("http://localhost:3000/dev/cart/3", requestOptions)
+fetch("baseUrl/dev/cart/3", requestOptions)
   .then((response) => response.text())
   .then((result) => console.log(result))
   .catch((error) => console.error(error));
