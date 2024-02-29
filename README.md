@@ -4,7 +4,7 @@ This APIS documentation provides details on the endpoints and operations of the 
 
 ## Order APIS
 
-### Create Order
+## Create Order
 
 ###  /Order  Create Order
 
@@ -48,7 +48,7 @@ fetch("baseUrl/dev/order", requestOptions)
   .catch((error) => console.error(error));
 
 ```
-### Create CancelOrder
+## Create CancelOrder
 
 ###  /Order/{Id}    Create CancelOrder
 
@@ -80,7 +80,7 @@ fetch("baseUrl/dev/order/{Id}", requestOptions)
   .catch((error) => console.error(error));
 
 ```
-### Create CloseOrder
+## Create CloseOrder
 
 ###  /Order/{Id}    Create CloseOrder
 
@@ -424,7 +424,7 @@ fetch("baseurl/dev/inventory/95792b6b-5a86-4caf-8900-92d46ce1062b", requestOptio
   
 ## Product APIS
  
-### insert Product
+## Insert Product
  
 ### /Product - insert Product
  
@@ -482,7 +482,7 @@ fetch("baseUrl/dev/product", requestOptions)
   ```
  
  
-### get Product
+## Get Product
  
 ### /Product - get Product
  
@@ -507,7 +507,7 @@ fetch("baseUrl/dev/product", requestOptions)
   .catch((error) => console.error(error));
   ```
  
-  ### product get by id
+## Product get by id
  
   ### /Product - Product get by id
  
@@ -530,7 +530,7 @@ fetch("baseUrl/dev/product/04ee1f11-09e8-488e-91c9-f64aede3eee1", requestOptions
   .then((result) => console.log(result))
   .catch((error) => console.error(error));
  ```
-### update Product
+## Update Product
  
 ### /Product - update Product
  
@@ -587,7 +587,7 @@ fetch("baseUrl/dev/product/04ee1f11-09e8-488e-91c9-f64aede3eee1", requestOptions
   .catch((error) => console.error(error));
   ```
  
- ### delete Product
+## Delete Product
  
 ### /Product - delete Product
  
@@ -613,9 +613,9 @@ fetch("baseUrl/dev/product/04ee1f11-09e8-488e-91c9-f64aede3eee1", requestOptions
 
 
 
-## customer APIS
+## Customer APIS
 
-### insert customer
+## Insert customer
 
 ### /customer - insert customer
 
@@ -656,6 +656,7 @@ fetch("baseUrl/customer", requestOptions)
   .then((result) => console.log(result))
   .catch((error) => console.error(error));
 ```
+## Get Customer
 
 ### /customer - get all customer
 
@@ -681,7 +682,7 @@ fetch("baseUrl/customer", requestOptions)
   .catch((error) => console.error(error));
 ```
 
-### customer get by id
+## Customer get by id
 
 ### /customer - customer get by id
 
@@ -707,7 +708,7 @@ fetch("baseUrl/customer/9af5cc9e-38d7-4075-b0dc-840e5bcbfc1d", requestOptions)
   .catch((error) => console.error(error));
 ```
 
-### update customer
+## Update customer
 
 ### /customer - update Product
 
@@ -746,7 +747,7 @@ fetch("baseUrl/customer/9af5cc9e-38d7-4075-b0dc-840e5bcbfc1d", requestOptions)
   .catch((error) => console.error(error));
 ```
 
-### delete customer
+## Delete customer
 
 ### /customer - delete customer
 
@@ -777,9 +778,9 @@ fetch("baseUrl/customer/a35acb7c-92af-452e-add8-6619511b3fe9", requestOptions)
 ```
 
  
-## cart APIS
+## Cart APIS
  
-### insert cart
+## Insert cart
  
 ### /cart - insert cart
  
@@ -814,7 +815,7 @@ fetch("baseUrl/insertCart", requestOptions)
   ```
  
  
-### get cart
+## Get cart
  
 ### /cart - get cart
  
@@ -838,7 +839,7 @@ fetch("baseUrl/dev/cart", requestOptions)
   .catch((error) => console.error(error));
   ```
  
-  ### cart get by id
+## Cart get by id
  
   ### /cart - cart get by id
  
@@ -861,7 +862,7 @@ fetch("baseUrl/dev/cart/2", requestOptions)
   .then((result) => console.log(result))
   .catch((error) => console.error(error));
  ```
-### update cart
+## Update cart
  
 ### /cart - update cart
  
@@ -894,7 +895,7 @@ fetch("baseUrl/dev/cart/7", requestOptions)
   .catch((error) => console.error(error));
   ```
  
- ### delete cart
+## Delete cart
  
 ### /cart - delete cart
  
