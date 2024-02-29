@@ -42,7 +42,7 @@ const requestOptions = {
   redirect: "follow"
 };
 
-fetch("http://localhost:3000/dev/order", requestOptions)
+fetch("baseUrl/dev/order", requestOptions)
   .then((response) => response.text())
   .then((result) => console.log(result))
   .catch((error) => console.error(error));
