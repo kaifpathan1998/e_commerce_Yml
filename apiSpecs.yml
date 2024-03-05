@@ -633,7 +633,7 @@ paths:
 
   /products/{id}:
     get:
-      summary: Retrieve a specific product by ID
+      summary: Retrieve a specific product by id
       parameters:
         - name: id
           in: path
